@@ -65,7 +65,7 @@ export const NFTPreview = ({
           <input
             type="submit"
             value="Confirm"
-            className="text-left font-light border border-slate-400 mt-2 rounded-lg p-1 shadow-sm bg-slate-300"
+            className="text-left font-light border border-slate-400 mt-2 rounded-lg p-1 shadow-sm bg-slate-300 cursor-pointer"
           />
         </div>
       </div>
