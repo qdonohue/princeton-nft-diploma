@@ -7,6 +7,17 @@ export type NftType = {
   classYear?: Number;
 };
 
+const ClickableImage = ({ source }: { source: string }) => {
+  return (
+    <div className="relative my-2 shadow-sm border border-slate-100 rounded-sm">
+      <img className="relative inset-0 object-cover z-0" src="/nassau.jpeg" />
+      <div className="opacity-0 hover:opacity-70 hover:bg-slate-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-slate-800 font-semibold hover:cursor-pointer">
+        Change Image
+      </div>
+    </div>
+  );
+};
+
 const Label = ({ title }: { title: string }) => (
   <div className="">{title + ":"}</div>
 );
@@ -38,8 +49,9 @@ export const NFTPreview = ({
         All values will be publically visible on your NFT.
       </div>
       <hr className="py-2" />
-      <img className="" src="/nassau.jpeg" />
+      {/* <img className="" src="/nassau.jpeg" /> */}
       {/* <Image /> */}
+      <ClickableImage source="nassau.jpeg" />
       <div className="pl-2 divide-y divide-slate-300 space-y-2">
         <div className={rowStyling}>
           <Label title={"Name"} />
