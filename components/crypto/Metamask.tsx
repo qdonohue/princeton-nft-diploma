@@ -16,10 +16,6 @@ const StatusLabel = ({ text }: { text: string }) => (
 const Metamask = () => {
   const { status, connect, account } = useMetaMask();
 
-  console.log(status);
-  console.log(account);
-  console.log();
-
   if (status === "unavailable") {
     return (
       <div
