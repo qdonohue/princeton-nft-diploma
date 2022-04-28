@@ -72,10 +72,10 @@ const Metamask = () => {
     >
       <StatusLabel text={`Succesfully connected wallet!`} />
       <div className="shadow-lg pt-2">
-        <Blockies seed={account} size={48} />
+        {account && <Blockies seed={account} size={48} />}
       </div>
       <div className="text-sm font-light">
-        {account?.substring(0, 14) + "..."}
+        {account ? account?.substring(0, 14) + "..." : ""}
       </div>
     </div>
   );

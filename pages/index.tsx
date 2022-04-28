@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       </div>
 
       <footer className={"my-2 font-light mx-auto"}>
-        Created by Quinn Donohue and Dane Jacobson '22.
+        Created by Quinn Donohue and Dane Jacobson 22.
       </footer>
     </div>
   );
