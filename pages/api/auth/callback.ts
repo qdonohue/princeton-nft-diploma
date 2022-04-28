@@ -21,7 +21,7 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const queryParams = new URLSearchParams({ ...params });
 
-  const validateURL = `${CAS_BASE_URL}/validate?${queryParams.toString()}`;
+  const validateURL = `${CAS_BASE_URL}validate?${queryParams.toString()}`;
 
   const resp = await axios.get(validateURL);
   const reply = resp.data();
