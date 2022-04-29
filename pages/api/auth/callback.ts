@@ -30,7 +30,7 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   //   At this point, check if
   console.log(validateParser(resp.data));
 
-  res.status(200).json(validateParser(resp.data));
+  res.status(200).json(resp.data);
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
