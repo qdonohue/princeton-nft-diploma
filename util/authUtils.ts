@@ -1,9 +1,10 @@
 export const validateParser = (data: string) => {
-  return "qdonohue";
+  // return "qdonohue";
   if (data.substring(0, 2) === "no") {
     return null;
   } else {
-    const seperated = data.split(" ");
+    const seperated = data.split("\n");
+    console.log(seperated);
     return seperated[1];
   }
 };
