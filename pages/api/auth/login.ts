@@ -1,12 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const CAS_BASE_URL = process.env.CAS_BASE_URL
-  ? process.env.CAS_BASE_URL
-  : "https://fed.princeton.edu/cas/";
-
-const SERVICE_CALLBACK_URL = process.env.SERVICE_CALLBACK_URL
-  ? process.env.SERVICE_CALLBACK_URL
-  : "http://localhost:3000/api/auth/callback";
+import { CAS_BASE_URL, SERVICE_CALLBACK_URL } from "../../../util/constants";
 
 const handleGetRequest = (req: NextApiRequest, res: NextApiResponse) => {
   const params = {
@@ -16,8 +9,6 @@ const handleGetRequest = (req: NextApiRequest, res: NextApiResponse) => {
   const queryParams = new URLSearchParams({ ...params });
 
   const redirectUrl = `${CAS_BASE_URL}login?${queryParams.toString()}`;
-  console.log("Redirect URL is: ");
-  console.log(redirectUrl);
 
   res.redirect(redirectUrl);
 };

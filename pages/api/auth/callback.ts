@@ -1,20 +1,11 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../prisma/prisma";
-import { validateParser } from "../../../util/authUtils";
-
-const CAS_BASE_URL = process.env.CAS_BASE_URL
-  ? process.env.CAS_BASE_URL
-  : "https://fed.princeton.edu/cas/";
-
-const SERVICE_CALLBACK_URL = process.env.SERVICE_CALLBACK_URL
-  ? process.env.SERVICE_CALLBACK_URL
-  : "http://localhost:3000/api/auth/callback";
+import { randomSession, validateParser } from "../../../util/authUtils";
+import { CAS_BASE_URL, SERVICE_CALLBACK_URL } from "../../../util/constants";
 
 const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   const ticket = req.query["ticket"] as string;
-  console.log("Ticket from request:");
-  console.log(ticket);
 
   const params = {
     service: SERVICE_CALLBACK_URL,
@@ -27,10 +18,37 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const resp = await axios.get(validateURL);
 
-  //   At this point, check if
-  console.log(validateParser(resp.data));
+  const userName = validateParser(resp.data);
 
-  res.status(200).json(resp.data);
+  if (userName) {
+    // Check if user already exists
+    let user = await prisma.user.findUnique({
+      where: { netId: userName },
+      include: { session: true },
+    });
+
+    if (!user) {
+      // If it doesn't exist create it.
+      user = await prisma.user.create({
+        data: { netId: userName },
+        include: { session: true },
+      });
+    } else if (user.session) {
+      // If it does exist, invalidate earlier session
+      await prisma.session.delete({ where: { id: user.session.id } });
+    }
+
+    const sessionKey = randomSession();
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { session: { create: { key: sessionKey } } },
+    });
+
+    res.redirect(`/create/${sessionKey}`);
+  } else {
+    res.redirect("/invalid");
+  }
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
