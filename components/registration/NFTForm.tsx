@@ -45,7 +45,7 @@ export const NFTPreview = ({
         <hr className="pb-1" />
         <ImageUpload setImageData={changeImage} />
         <div className="text-xs font-light text-center text-slate-500">
-          If you don't like our image, feel free to upload your own
+          Drag and drop to change the image.
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -8,7 +8,7 @@ const ImageUpload = ({
   setImageData: (arg0: File) => void;
 }) => {
   const [imgUrl, setImgUrl] = useState("/default.jpeg");
-  const onDrop = useCallback(async (acceptedFiles) => {
+  const onDrop = useCallback(async (acceptedFiles: Array<File>) => {
     console.log(acceptedFiles[0]);
     const imgLocalURL = URL.createObjectURL(acceptedFiles[0]);
     setImgUrl(imgLocalURL);
