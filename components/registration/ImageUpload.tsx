@@ -25,9 +25,9 @@ const ImageUpload = ({
   return (
     <div {...getRootProps({})}>
       <input {...getInputProps()} />
-      <div className="relative shadow-sm border border-slate-100 rounded max-w-fit max-h-fit overflow-hidden">
+      <div className="relative shadow-sm border border-slate-100 rounded max-w-fit max-h-fit overflow-hidden mx-auto">
         <img
-          className="relative inset-0 object-cover z-0 w-4/5 h-4/5 mx-auto my-auto"
+          className="relative inset-0 object-cover z-0 w-96 h-96 mx-auto my-auto"
           src={imgUrl}
         />
         <div className="opacity-0 flex flex-col justify-center hover:opacity-70 hover:bg-slate-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-slate-800 font-semibold hover:cursor-pointer">
