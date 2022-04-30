@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ImageUpload from "./ImageUpload";
-
-export type NftType = {
-  name?: string;
-  image?: string | ImageData;
-  description?: string;
-  classYear?: Number;
-};
+import { NftType } from "./types";
 
 const Label = ({ title }: { title: string }) => (
   <div className="">{title + ":"}</div>
