@@ -12,12 +12,7 @@ const inputStyling =
 
 const rowStyling = "flex flex-row font-light";
 
-export const NFTPreview = ({
-  name,
-  image,
-  description,
-  classYear,
-}: NftType) => {
+const NFTForm = ({ name, image, description, classYear }: NftType) => {
   const { register, handleSubmit } = useForm();
   const [imageData, setImageData] = useState<File>();
 
@@ -77,3 +72,5 @@ export const NFTPreview = ({
     </>
   );
 };
+
+export default NFTForm;
