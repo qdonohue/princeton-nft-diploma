@@ -4,6 +4,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      independence: "#383B53",
+      crayola: "#3777FF",
+      princeton: "#EE7B30",
+      linen: "#F9EBE0",
+    },
     extend: {},
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
