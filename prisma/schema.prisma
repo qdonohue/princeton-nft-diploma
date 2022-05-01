@@ -20,7 +20,6 @@ model Nft {
     description String
     image       String
     address     String
-    wallet      String
     User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId      Int    @unique
 }
@@ -29,5 +28,5 @@ model Session {
     id     Int    @id @default(autoincrement())
     User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId Int    @unique
-    key    String
+    key    String @unique
 }

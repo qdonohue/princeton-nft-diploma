@@ -18,8 +18,6 @@ const StatusLabel = ({ text }: { text: string }) => (
 const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
   const { status, connect, account } = useMetaMask();
 
-  console.log(status);
-
   if (status === "unavailable") {
     return (
       <div className={containerStyling}>

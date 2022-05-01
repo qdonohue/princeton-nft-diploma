@@ -29,7 +29,21 @@ const CreatePage = () => {
     setStep(SIGNUP_STEP.CONFIRM);
   };
 
+  // TODO: Decide on how to handle custom image upload.
+  // One possibility is to have a seperate endpoint for creating / uploading image, and then
+  // have that endpoint respond w/ img url for minting purposes (prob best...)
   const mintNft = async () => {
+    await fetch("/api/mint", {
+      body: JSON.stringify({
+        wallet,
+        session,
+        ...userData,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
     console.log("minting was requested!");
   };
 

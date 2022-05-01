@@ -38,6 +38,7 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
       await prisma.session.delete({ where: { id: user.session.id } });
     }
 
+    // TODO: Make sure this doesn't conflict with an existing session
     const sessionKey = randomSession();
 
     await prisma.user.update({
