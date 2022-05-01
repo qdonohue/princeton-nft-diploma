@@ -12,9 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/nassau.jpeg" />
       </Head>
       <Component {...pageProps} />
-      <footer className={"fixed bottom-0 py-1 font-light mx-auto"}>
+      {/* <footer className={"fixed bottom-0 py-1 font-light mx-auto"}>
         {"Created by Quinn Donohue and Dane Jacobson '22."}
-      </footer>
+      </footer> */}
     </MetaMaskProvider>
   );
 }
