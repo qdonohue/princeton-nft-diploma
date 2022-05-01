@@ -27,3 +27,5 @@ export const stepToStatus = (cur: number, id: number) => {
     return STAGE_STATUS.UPCOMING;
   }
 };
+
+export const DEFAULT_NFT_IMAGE = "/default.jpeg";

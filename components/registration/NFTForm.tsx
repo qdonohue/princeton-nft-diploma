@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { DEFAULT_NFT_IMAGE } from "../../util/constants";
 import ImageUpload from "./ImageUpload";
 import { NftType } from "./types";
 
@@ -12,15 +13,24 @@ const inputStyling =
 
 const rowStyling = "flex flex-row font-light";
 
-const NFTForm = ({ name, image, description, classYear }: NftType) => {
+const NFTForm = ({
+  advance,
+}: {
+  advance: (user: NftType, image: File | null) => void;
+}) => {
   const { register, handleSubmit } = useForm();
-  const [imageData, setImageData] = useState<File>();
+  const [imageData, setImageData] = useState<File | null>(null);
+  // const defaultImg = DEFAULT_NFT_IMAGE; // This is insane, but it doesn't work as default img otherwise...
+  // const [imgUrl, setImgUrl] = useState<string>(defaultImg);
+  const [imgUrl, setImgUrl] = useState(DEFAULT_NFT_IMAGE);
 
   const onSubmit: any = (data: any) => {
-    console.log(data);
+    const userData = { ...data, image: imgUrl };
+    advance(userData, imageData);
   };
 
-  const changeImage = (f: File) => {
+  const changeImage = (f: File, s: string) => {
+    setImgUrl(s);
     setImageData(f);
   };
 
@@ -32,7 +42,7 @@ const NFTForm = ({ name, image, description, classYear }: NftType) => {
           All values will be publically visible on your NFT.
         </div>
         <hr className="pb-1" />
-        <ImageUpload setImageData={changeImage} />
+        <ImageUpload setImageData={changeImage} img={imgUrl} />
         <div className="text-xs font-light text-center text-slate-500">
           Drag and drop to change the image.
         </div>

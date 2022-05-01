@@ -30,7 +30,7 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
   ];
 
   return (
-    <div className="lg:border-t lg:border-b lg:border-gray-200">
+    <div className="lg:border-t lg:border-b lg:border-gray-200 h-18">
       <nav
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         aria-label="Progress"
@@ -49,7 +49,12 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
                 )}
               >
                 {step.status === STAGE_STATUS.COMPLETE ? (
-                  <div className="group" onClick={() => setStep(step.id)}>
+                  <div
+                    className="group cursor-pointer"
+                    onClick={() => {
+                      setStep(step.id);
+                    }}
+                  >
                     <span
                       className="absolute top-0 left-0 w-1 h-full bg-transparent group-hover:bg-gray-200 lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
                       aria-hidden="true"

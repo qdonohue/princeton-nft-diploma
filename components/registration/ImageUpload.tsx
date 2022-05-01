@@ -1,18 +1,19 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 import { useDropzone } from "react-dropzone";
+import { DEFAULT_NFT_IMAGE } from "../../util/constants";
 
 const ImageUpload = ({
   setImageData,
+  img,
 }: {
-  setImageData: (arg0: File) => void;
+  setImageData: (arg0: File, arg1: string) => void;
+  img: string;
 }) => {
-  const [imgUrl, setImgUrl] = useState("/default.jpeg");
   const onDrop = useCallback(async (acceptedFiles: Array<File>) => {
     console.log(acceptedFiles[0]);
     const imgLocalURL = URL.createObjectURL(acceptedFiles[0]);
-    setImgUrl(imgLocalURL);
-    setImageData(acceptedFiles[0]);
+    setImageData(acceptedFiles[0], imgLocalURL);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -28,7 +29,7 @@ const ImageUpload = ({
       <div className="relative shadow-sm border border-slate-100 rounded max-w-fit max-h-fit overflow-hidden mx-auto">
         <img
           className="relative inset-0 object-cover z-0 w-96 h-96 mx-auto my-auto"
-          src={imgUrl}
+          src={img}
         />
         <div className="opacity-0 flex flex-col justify-center hover:opacity-70 hover:bg-slate-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-slate-800 font-semibold hover:cursor-pointer">
           <svg
