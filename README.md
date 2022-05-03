@@ -54,6 +54,19 @@ This endpoint is hit by the user after a succesful CAS login. It will strip the 
 
 Upon succesful validation, it will create the user object if one doesn't already exist, create or replace the existing user session, and then redirect the user to `/create/[session]` (if no NFT has been made yet - TODO: Handle NFT has been made case).
 
+# NFT Content
+
+The NFT has the following fields:
+
+```
+"name" : string
+"major" : string
+"year" : string
+"message" : string
+"image" : string
+"address" : string (Wallet address - not on IPFS)
+```
+
 # Getting Started:
 
 To run the codebase locally, you will need:
