@@ -13,6 +13,7 @@ const CreatePage = () => {
   const [wallet, setWallet] = useState("");
   const [userData, setUserData] = useState<NftType>({});
   const [imgFile, setImgFile] = useState<File>();
+  const [imgUrl, setImgUrl] = useState("");
   const router = useRouter();
   const { session } = router.query;
 
@@ -58,7 +59,12 @@ const CreatePage = () => {
         )}
         {step === SIGNUP_STEP.NFT && <NFTForm advance={nftAdvance} />}
         {step === SIGNUP_STEP.CONFIRM && (
-          <NFTtransfer wallet={wallet} userData={userData} mint={mintNft} />
+          <NFTtransfer
+            wallet={wallet}
+            userData={userData}
+            imageUrl={}
+            mint={mintNft}
+          />
         )}
       </div>
       <div className="fixed bottom-0 inset-x-0 white-800">
