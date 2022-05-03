@@ -32,16 +32,6 @@ The POST call on this endpoint is used for minting an NFT for a given user. The 
 
 If the user already has an NFT created, it will respond with a `400`. Upon succesful creation the user will be given a `201`.
 
-### TODO: `/api/image`
-
-The POST call on this endpoint is used for creating an IPFS image, and will return the string url for the image. It's expecting `multipart/form-data` (`FormData` in ts)
-
-```
-
-```
-
-Upon failure, it will respond with a `500` - or `201` + the url in JSON if succesful.
-
 ## Authentication
 
 ### `/api/auth/login`
@@ -53,6 +43,18 @@ This endpoint will redirect the request to the CAS login, with our service callb
 This endpoint is hit by the user after a succesful CAS login. It will strip the CAS ticket from the query parameters (`ticket=...`) and then validate the ticket via the validation URL.
 
 Upon succesful validation, it will create the user object if one doesn't already exist, create or replace the existing user session, and then redirect the user to `/create/[session]` (if no NFT has been made yet - TODO: Handle NFT has been made case).
+
+# NFT Content
+
+The NFT has the following fields:
+
+```
+"name" : string
+"major" : string
+"year" : string
+"message" : string
+"image" : string
+```
 
 # Getting Started:
 

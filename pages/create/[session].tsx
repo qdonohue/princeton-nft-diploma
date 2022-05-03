@@ -6,7 +6,7 @@ import NFTtransfer from "../../components/registration/NFTtransfer";
 import { ProgressBar } from "../../components/registration/ProgressBar";
 import { NftType } from "../../components/registration/types";
 
-import { SIGNUP_STEP } from "../../util/constants";
+import { DEFAULT_NFT_IMAGE, SIGNUP_STEP } from "../../util/constants";
 
 const CreatePage = () => {
   const [step, setStep] = useState(SIGNUP_STEP.METAMASK);
@@ -29,22 +29,25 @@ const CreatePage = () => {
     setStep(SIGNUP_STEP.CONFIRM);
   };
 
-  // TODO: Decide on how to handle custom image upload.
-  // One possibility is to have a seperate endpoint for creating / uploading image, and then
-  // have that endpoint respond w/ img url for minting purposes (prob best...)
   const mintNft = async () => {
-    await fetch("/api/mint", {
-      body: JSON.stringify({
-        wallet,
-        session,
-        ...userData,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    let data = new FormData();
+    if (imgFile) {
+      data.append("file", imgFile);
+    } else {
+      const defaultImage = await fetch(DEFAULT_NFT_IMAGE);
+      const defaultImageBlob = await defaultImage.blob();
+      data.append("file", defaultImageBlob);
+    }
+    data.append("metadata", JSON.stringify(userData));
+    data.append("session", JSON.stringify(session));
+    data.append("address", wallet);
+
+    const resp = await fetch("/api/mint", {
+      body: data,
       method: "POST",
     });
-    console.log("minting was requested!");
+
+    console.log(resp);
   };
 
   return (
