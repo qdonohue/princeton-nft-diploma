@@ -23,8 +23,9 @@ const CreatePage = () => {
     setStep(SIGNUP_STEP.NFT);
   };
 
-  const nftAdvance = (user: NftType, image: File | null) => {
+  const nftAdvance = (user: NftType, image: File | null, img: string) => {
     setUserData(user);
+    setImgUrl(img);
     if (image) {
       setImgFile(image);
     }

@@ -14,7 +14,7 @@ const FormIterator = ({
   stage,
   nextEntry,
 }: {
-  advance: (user: NftType, image: File | null) => void;
+  advance: (user: NftType, image: File | null, img: string) => void;
   stage: number;
   nextEntry: () => void;
 }) => {
@@ -25,7 +25,7 @@ const FormIterator = ({
   const onSubmit: any = (data: any) => {
     if (stage === FORM_STAGE.MESSAGE) {
       const userData = { ...data, image: imgUrl };
-      advance(userData, imageData);
+      advance(userData, imageData, imgUrl);
     } else {
       nextEntry();
     }
