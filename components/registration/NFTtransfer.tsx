@@ -19,7 +19,7 @@ const AnimatedArrow = () => (
 );
 
 const buttonStyling =
-  "flex flex-row w-72 h-12 px-2 justify-between items-center text-white border border-slate-400 cursor-pointer text-center text-2xl rounded-lg font-light hover:shadow-lg bg-princeton";
+  "flex flex-row w-72 h-12 px-2 justify-between items-center text-black border border-slate-400 cursor-pointer text-center text-2xl rounded-lg font-light hover:shadow-lg bg-princeton";
 
 const NFTtransfer = ({
   wallet,
@@ -35,10 +35,10 @@ const NFTtransfer = ({
   back: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-between items-center mt-5">
+    <div className="flex flex-col justify-between items-center space-y-6">
       <NFTsummary nft={userData} img={imageUrl} />
       <AnimatedArrow />
-      <div className="flex flex-row text-center justify-center items-center -mt-28 space-x-8">
+      <div className="flex flex-row text-center justify-center items-center space-x-8">
         <div className={buttonStyling} onClick={back}>
           <ChevronLeftIcon className="h-6 w-6" />
           {"I want to change things"}

@@ -7,7 +7,7 @@ const messageContent =
 const labelStyling = "font-bold text-left pl-2 col-span-1 text-white";
 
 const NftMetaData = ({ name, major, year, message }: NftType) => (
-  <div className="w-2/5 grid place-items-center">
+  <div className="max-w-fit grid place-items-center">
     <div className=" h-full grid grid-cols-3 place-content-start space-y-2">
       <div className="col-span-3 pl-2 text-4xl text-center text-white pb-4">
         NFT Data
@@ -26,9 +26,9 @@ const NftMetaData = ({ name, major, year, message }: NftType) => (
 
 const NFTsummary = ({ nft, img }: { img: string } & { nft: NftType }) => {
   return (
-    <div className="w-full h-1/4 mt-40 flex flex-row justify-center items-center space-x-4">
+    <div className="w-full h-1/5 flex flex-row justify-center items-center space-x-4 mt-48">
       <NftMetaData {...nft} />
-      <img src={img} className="w-2/5 aspect-h-1 rounded-lg" />
+      <img src={img} className="w-96 aspect-w-1 rounded-lg" />
     </div>
   );
 };
