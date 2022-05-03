@@ -12,6 +12,7 @@
     "@heroicons/react": "^1.0.6",
     "@prisma/client": "^3.13.0",
     "@types/react-blockies": "^1.4.1",
+    "alch": "^0.0.2",
     "axios": "^0.27.2",
     "metamask-react": "^2.3.0",
     "next": "12.1.5",
