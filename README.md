@@ -10,9 +10,17 @@ Home page with CAS login and FAQs
 
 Page that handles the creation flow of an NFT. On this page, users will be prompted to connect a metamask wallet, customize their NFT, and then finally mint their NFT and send it to their wallet. The session key is a unique identifier used to track a user after they log in with CAS - it is invalidated and re-issued on each new session. (This is to prevent a user from posing as another if for example we used something like `/create/my_net_id` as the slug)
 
-### `/discover`
+### `/me/[session]`
 
-Page that will display NFTs that have been minted. Users can view those that their friends have uploaded.
+This page will display your NFT after you've minted it. If you've previously minted an NFT on the site, you will be redirected to this page upon login.
+
+### `/help`
+
+A page to provide information on how to transfer your NFT into your metamask wallet.
+
+### `/error`
+
+Let's hope you never see this page.
 
 ## Backend
 
