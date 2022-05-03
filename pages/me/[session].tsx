@@ -52,7 +52,7 @@ const ViewNFT = ({
   wallet?: string;
 }) => {
   return (
-    <div className="w-screen h-screen bg-independence pt-16 mx-auto my-auto flex flex-col justify-start items-center">
+    <div className="w-screen h-screen bg-independence pt-16 px-24 mx-auto my-auto flex flex-col justify-start items-center">
       <div className="text-6xl text-center text-white">
         Your NFT has been minted!
         <div className="text-sm font-light">
