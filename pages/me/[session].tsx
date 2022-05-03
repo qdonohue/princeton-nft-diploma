@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import NFTsummary from "../../components/crypto/NFTsummary";
 import Wallet from "../../components/crypto/wallet";
@@ -65,9 +66,9 @@ const ViewNFT = ({
           <Wallet address={wallet} />
         </div>
       )}
-      <a className="text-blue-400 pt-10 cursor-pointer text-xl" href="/help">
-        Help! How do I get my NFT into my wallet?
-      </a>
+      <div className="text-blue-400 pt-10 cursor-pointer text-xl">
+        <Link href="/help">Help! How do I get my NFT into my wallet?</Link>
+      </div>
     </div>
   );
 };
