@@ -55,7 +55,7 @@ const CreatePage = () => {
 
   return (
     <div className="w-screen h-screen ">
-      <div className="p-2 bg-linen mx-auto my-auto h-full pb-18 flex flex-col justify-start items-center">
+      <div className="p-2 bg-independence mx-auto my-auto h-full pb-18 flex flex-col justify-start items-center">
         {step === SIGNUP_STEP.METAMASK && (
           <Metamask advance={metamaskAdvance} />
         )}

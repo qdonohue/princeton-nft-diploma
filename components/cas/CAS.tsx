@@ -5,7 +5,7 @@ const CAS = () => {
   const SERVICE_CALLBACK_URL = "https://princeton-nft-diploma.vercel.app/";
 
   return (
-    <div className="h-96 w-96 border border-black rounded-lg text-center">
+    <div className="h-14 w-40 bg-princeton rounded-lg grid place-items-center">
       <Link href="/api/auth/login">Connect to CAS</Link>
     </div>
   );

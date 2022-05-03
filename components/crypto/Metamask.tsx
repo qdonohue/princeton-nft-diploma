@@ -9,8 +9,6 @@ import Image from "next/image";
 const containerStyling =
   "h-4/5 w-full mx-auto my-auto p-5 flex flex-col items-center";
 
-const imageStyling = "h-64 w-64";
-
 const StatusLabel = ({ text }: { text: string }) => (
   <div className="font-light text-center text-2xl">{text}</div>
 );
@@ -45,19 +43,21 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
 
   if (status === "notConnected") {
     return (
-      <div>
+      <div className="">
+        <div className="text-white text-5xl font-family: ui-sans-serif mt-10">
+          Connect to Metamask
+        </div>
         <div
           className={
             containerStyling +
-            " cursor-pointer hover:bg-slate-200 mt-24 border border-slate-100 shadow-sm rounded-lg"
+            "w-80 h-80 cursor-pointer hover:bg-princeton mt-16 shadow-lg rounded-lg bg-linen grid place-items-center"
           }
           onClick={connect}
         >
-          <div className="font-light text-center text-xl">Connect Metamask</div>
-          <img src="/Metamask.png" className={imageStyling} />
-          <div className="font-light text-center text-sm">
-            We need your ethereum wallet to transfer your NFT
-          </div>
+          <img src="/Metamask.png" className="h-64 w-64" />
+        </div>
+        <div className="font-light text-white text-center text-m mt-12">
+          We need your ethereum wallet's address to send your NFT!
         </div>
       </div>
     );
