@@ -62,7 +62,7 @@ const CreatePage = () => {
           <NFTtransfer
             wallet={wallet}
             userData={userData}
-            imageUrl={}
+            imageUrl={imgUrl}
             mint={mintNft}
           />
         )}
