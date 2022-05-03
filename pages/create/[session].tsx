@@ -39,6 +39,8 @@ const CreatePage = () => {
       data.append("file", defaultImageBlob);
     }
     data.append("metadata", JSON.stringify(userData));
+    data.append("session", JSON.stringify(session));
+    data.append("address", wallet);
 
     const resp = await fetch("/api/mint", {
       body: data,
@@ -46,7 +48,6 @@ const CreatePage = () => {
     });
 
     console.log(resp);
-    // router.push("/");
   };
 
   return (
