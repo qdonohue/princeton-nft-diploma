@@ -29,7 +29,7 @@ const Arrows = ({
 const FormManager = ({
   advance,
 }: {
-  advance: (user: NftType, image: File | null) => void;
+  advance: (user: NftType, image: File | null, img: string) => void;
 }) => {
   const [stage, setStage] = useState(0);
 
