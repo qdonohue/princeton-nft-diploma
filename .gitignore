@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/crypto/node_modules
+/crypto/.env
 
 # testing
 /coverage
@@ -34,5 +36,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# secrets
-./crypto/.env
+yarn.lock
