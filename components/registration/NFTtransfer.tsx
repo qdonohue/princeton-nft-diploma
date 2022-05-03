@@ -17,15 +17,17 @@ const AnimatedArrow = () => (
 const NFTtransfer = ({
   wallet,
   userData,
+  imageUrl,
   mint,
 }: {
   wallet: string;
   userData: NftType;
+  imageUrl: string;
   mint: () => void;
 }) => {
   return (
     <div className="flex flex-col justify-between items-center mt-5 space-y-8">
-      <NFTsummary {...userData} classYear="2022" />
+      <NFTsummary {...userData} img={imageUrl} />
       <AnimatedArrow />
       <div className="-mt-12">
         <Wallet address={wallet} />
