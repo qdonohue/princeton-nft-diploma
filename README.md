@@ -57,10 +57,11 @@ Upon succesful validation, it will create the user object if one doesn't already
 # Getting Started:
 
 To run the codebase locally, you will need:
-An env file with:
+An env file with DB access URL via `DB_URI` (make your own postgres or ask us)
 
-- DB access URL via `DB_URI` (make your own postgres or ask us)
-- `CAS_BASE_URL="https://fed.princeton.edu/cas/"`
+`localhost:3000` aliased to `localhost.princeton.edu:3000`
+
+(CAS is annoying and won't let localhost work). (See https://linuxize.com/post/how-to-edit-your-hosts-file/#modify-hosts-file-in-macos)
 
 ## Installation
 
