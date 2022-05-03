@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Metamask from "../../components/crypto/Metamask";
+import FormManager from "../../components/registration/FormManager";
 import NFTForm from "../../components/registration/NFTForm";
 import NFTtransfer from "../../components/registration/NFTtransfer";
 import { ProgressBar } from "../../components/registration/ProgressBar";
@@ -57,7 +58,7 @@ const CreatePage = () => {
         {step === SIGNUP_STEP.METAMASK && (
           <Metamask advance={metamaskAdvance} />
         )}
-        {step === SIGNUP_STEP.NFT && <NFTForm advance={nftAdvance} />}
+        {step === SIGNUP_STEP.NFT && <FormManager advance={nftAdvance} />}
         {step === SIGNUP_STEP.CONFIRM && (
           <NFTtransfer
             wallet={wallet}

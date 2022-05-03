@@ -37,3 +37,11 @@ export const stepToStatus = (cur: number, id: number) => {
 };
 
 export const DEFAULT_NFT_IMAGE = "/default.jpeg";
+
+export const FORM_STAGE = {
+  IMAGE: 0,
+  NAME: 1,
+  YEAR: 2,
+  MAJOR: 3,
+  MESSAGE: 4,
+};
