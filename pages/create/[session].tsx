@@ -54,7 +54,7 @@ const CreatePage = () => {
       method: "POST",
     });
 
-    console.log(resp);
+    router.push(`/me/${session}`);
   };
 
   return (

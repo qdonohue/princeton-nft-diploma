@@ -2,7 +2,7 @@ import { NftType } from "../registration/types";
 
 const lineContent = "col-span-2 font-light text-white";
 const messageContent =
-  "col-span-2 font-light whitespace-normal break-all text-white pr-24";
+  "col-span-2 font-light whitespace-normal break-normal text-white pr-24";
 
 const labelStyling = "font-bold text-left pl-2 col-span-1 text-white";
 

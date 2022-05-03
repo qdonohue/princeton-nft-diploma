@@ -10,7 +10,8 @@ const Home: NextPage = () => (
       <div className="text-center text-white text-6xl font-family: ui-sans-serif">
         Your Princeton Diploma.
       </div>
-      <div className="text-center text-white text-3xl font-family: ui-sans-serif m-10">
+      <div className="text-8xl text-center my-10">{"🐯"}</div>
+      <div className="text-center text-white text-3xl font-family: ui-sans-serif pb-10">
         Permanent and Immutable.
       </div>
       <div>

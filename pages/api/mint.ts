@@ -11,6 +11,7 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = new formidable.IncomingForm();
   data.keepExtensions = true;
+  console.log("Starting it all");
   await data.parse(req, async (err: any, fields: any, files: any) => {
     const sessionKey = fields.session.replaceAll('"', "");
     // Verify that this is the session of a current user
@@ -25,17 +26,15 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
     } else if (user.nft) {
       // Already minted an NFT
       console.log("User has already minted an NFT");
-      res.redirect("/existingNFT");
+      res.redirect(`/me/${sessionKey}`);
     } else {
       console.log("Valid session + user!");
       const address = fields.address.replaceAll('"', "");
       // Signed in user w/ out NFT --> mint it
       const hash = await mintOnPinata(files.file.path, fields.metadata);
 
-      const ipfsUrl = `ipfs://${hash}`;
+      const ipfsUrl = `ipfs.io/ipfs/${hash}`;
 
-      console.log("Pre minting");
-      // TODO: Call Dane's function
       await mintNFT(address, hash);
 
       console.log("made it past the function");

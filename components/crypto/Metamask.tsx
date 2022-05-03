@@ -11,14 +11,22 @@ const imageStyling = "w-64 h-64";
 const containerStyling =
   "h-4/5 w-full mx-auto my-auto p-5 flex flex-col items-center";
 
-const StatusLabel = ({ text }: { text: string }) => (
+const StatusLabel = ({
+  text,
+  complete,
+}: {
+  text: string;
+  complete?: boolean;
+}) => (
   <div>
     <div className="font-light text-white text-center text-5xl font-family: ui-sans-serif grid place-items-center mb-5">
       {text}
     </div>
-    <div className="text-white text-center text-lg font-family: ui-sans-serif mb-3">
-      Great job!
-    </div>
+    {complete && (
+      <div className="text-white text-center text-lg font-family: ui-sans-serif mb-3">
+        Great job!
+      </div>
+    )}
   </div>
 );
 
@@ -35,7 +43,7 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
           height={512}
           width={512}
         />
-        <div className="w-96 mt-2 text-center text-sm">
+        <div className="w-96 mt-2 text-center text-sm text-white">
           We use Metamask to connect your ethereum wallet to our servers. Please
           install the{" "}
           <a
@@ -84,7 +92,7 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
   if (status === "connected" && account) {
     return (
       <div className={containerStyling + ""}>
-        <StatusLabel text={`Your wallet is connected!`} />
+        <StatusLabel text={`Your wallet is connected!`} complete />
         <div className="shadow-lg pt-2">
           {account && <Blockies seed={account} size={48} />}
         </div>
