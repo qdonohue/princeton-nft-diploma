@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { DEFAULT_NFT_IMAGE } from "../../util/constants";
+import { DEFAULT_NFT_IMAGE, FORM_STEP } from "../../util/constants";
 import ImageUpload from "./ImageUpload";
 import { NftType } from "./types";
 
@@ -21,6 +21,7 @@ const NFTForm = ({
   const { register, handleSubmit } = useForm();
   const [imageData, setImageData] = useState<File | null>(null);
   const [imgUrl, setImgUrl] = useState(DEFAULT_NFT_IMAGE);
+  const [state, setStage] = useState(FORM_STEP);
 
   const onSubmit: any = (data: any) => {
     const userData = { ...data, image: imgUrl };
