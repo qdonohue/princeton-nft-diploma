@@ -1,12 +1,8 @@
 // environment variables
-const API_URL = process.env.API_URL!;
-const PUBLIC_KEY = process.env.PUBLIC_KEY!;
-const PRIVATE_KEY = process.env.PRIVATE_KEY!;
+import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+import { API_URL, PUBLIC_KEY, PRIVATE_KEY } from "./constants";
 
 // import constants
-const {
-  createAlchemyWeb3,
-} = require("../crypto/node_modules/@alch/alchemy-web3");
 const contractAddress = "0x505d099061f160cc84689d347df11a7d9e59df51";
 
 // get NFT contract
@@ -27,29 +23,33 @@ export default async function mintNFT(recipient: any, tokenURI: string) {
     data: nftContract.methods.mintNFTDiploma(recipient, tokenURI).encodeABI(),
   };
 
-  // sign the transaction
-  const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
-  signPromise
-    .then((signedTx: { rawTransaction: any }) => {
-      web3.eth.sendSignedTransaction(
-        signedTx.rawTransaction!,
-        function (err: any, hash: any) {
-          if (!err) {
-            console.log(
-              "The hash of your transaction is: ",
-              hash,
-              "\nCheck Alchemy's Mempool to view the status of your transaction!"
-            );
-          } else {
-            console.log(
-              "Something went wrong when submitting your transaction:",
-              err
-            );
+  try {
+    // sign the transaction
+    const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
+    signPromise
+      .then((signedTx: { rawTransaction: any }) => {
+        web3.eth.sendSignedTransaction(
+          signedTx.rawTransaction!,
+          function (err: any, hash: any) {
+            if (!err) {
+              console.log(
+                "The hash of your transaction is: ",
+                hash,
+                "\nCheck Alchemy's Mempool to view the status of your transaction!"
+              );
+            } else {
+              console.log(
+                "Something went wrong when submitting your transaction:",
+                err
+              );
+            }
           }
-        }
-      );
-    })
-    .catch((err: any) => {
-      console.log(" Promise failed:", err);
-    });
+        );
+      })
+      .catch((err: any) => {
+        console.log(" Promise failed:", err);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 }

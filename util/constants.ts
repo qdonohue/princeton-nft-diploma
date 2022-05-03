@@ -8,6 +8,12 @@ export const SERVICE_CALLBACK_URL = process.env.SERVICE_CALLBACK_URL
 
 export const PINATA_JWT = process.env.PINATA_JWT;
 
+export const API_URL = process.env.API_URL ? process.env.API_URL : "";
+export const PUBLIC_KEY = process.env.PUBLIC_KEY ? process.env.PUBLIC_KEY : "";
+export const PRIVATE_KEY = process.env.PRIVATE_KEY
+  ? process.env.PRIVATE_KEY
+  : "";
+
 export const SIGNUP_STEP = {
   METAMASK: 0,
   NFT: 1,

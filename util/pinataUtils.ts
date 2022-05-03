@@ -14,12 +14,17 @@ export const mintOnPinata = async (filePath: any, metadata: any) => {
   fd.append("file", fs.createReadStream(filePath));
   fd.append("pinataMetadata", metadata);
 
-  const reply = await axios.post(url, fd, {
-    headers: {
-      "Content-Type": `multipart/form-data`,
-      Authorization: PINATA_AUTH,
-    },
-  });
-  const { IpfsHash } = reply.data;
-  return IpfsHash;
+  try {
+    const reply = await axios.post(url, fd, {
+      headers: {
+        "Content-Type": `multipart/form-data`,
+        Authorization: PINATA_AUTH,
+      },
+    });
+    const { IpfsHash } = reply.data;
+    return IpfsHash;
+  } catch (error) {
+    console.log("pinata error");
+    console.log(error);
+  }
 };

@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable-serverless";
 import { prisma } from "../../prisma/prisma";
 
-import { PINATA_JWT } from "../../util/constants";
 import { mintOnPinata } from "../../util/pinataUtils";
+
+import mintNFT from "../../util/nftminting";
 
 const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(`/api/mint: incoming POST request`);
@@ -31,11 +32,17 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
       // Signed in user w/ out NFT --> mint it
       const hash = await mintOnPinata(files.file.path, fields.metadata);
 
+      const ipfsUrl = `ipfs://${hash}`;
+
+      console.log("Pre minting");
       // TODO: Call Dane's function
+      await mintNFT(address, hash);
+
+      console.log("made it past the function");
 
       // Create NFT
       const NftData = JSON.parse(fields.metadata);
-      NftData.image = hash;
+      NftData.image = ipfsUrl;
       NftData.address = address;
 
       // Update user object
