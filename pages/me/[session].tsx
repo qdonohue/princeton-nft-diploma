@@ -65,6 +65,9 @@ const ViewNFT = ({
           <Wallet address={wallet} />
         </div>
       )}
+      <a className="text-blue-400 pt-10 cursor-pointer text-xl" href="/help">
+        Help! How do I get my NFT into my wallet?
+      </a>
     </div>
   );
 };
