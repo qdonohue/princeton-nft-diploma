@@ -66,7 +66,7 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="w-10 h-10 flex items-center justify-center bg-indigo-600 rounded-full">
+                        <span className="w-10 h-10 flex items-center justify-center bg-princeton rounded-full">
                           <CheckIcon
                             className="w-6 h-6 text-white"
                             aria-hidden="true"
@@ -86,7 +86,7 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
                 ) : step.status === STAGE_STATUS.CURRENT ? (
                   <div aria-current="step">
                     <span
-                      className="absolute top-0 left-0 w-1 h-full bg-indigo-600 lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
+                      className="absolute top-0 left-0 w-1 h-full bg-princeton lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
                       aria-hidden="true"
                     />
                     <span
@@ -96,15 +96,15 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="w-10 h-10 flex items-center justify-center border-2 border-indigo-600 rounded-full">
-                          <span className="text-indigo-600">{step.id}</span>
+                        <span className="w-10 h-10 flex items-center justify-center border-2 text-princeton rounded-full">
+                          <span className="text-princeton">{step.id}</span>
                         </span>
                       </span>
                       <span className="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span className="text-xs font-semibold text-indigo-600 tracking-wide uppercase">
+                        <span className="text-xs font-semibold text-princeton tracking-wide uppercase">
                           {step.name}
                         </span>
-                        <span className="text-sm font-medium text-gray-500">
+                        <span className="text-sm font-medium text-white">
                           {step.description}
                         </span>
                       </span>
@@ -124,14 +124,14 @@ export const ProgressBar = ({ step, setStep }: { step: any; setStep: any }) => {
                     >
                       <span className="flex-shrink-0">
                         <span className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full">
-                          <span className="text-gray-500">{step.id}</span>
+                          <span className="text-white">{step.id}</span>
                         </span>
                       </span>
                       <span className="mt-0.5 ml-4 min-w-0 flex flex-col">
-                        <span className="text-xs font-semibold text-gray-500 tracking-wide uppercase">
+                        <span className="text-xs font-semibold text-white tracking-wide uppercase">
                           {step.name}
                         </span>
-                        <span className="text-sm font-medium text-gray-500">
+                        <span className="text-sm font-medium text-white">
                           {step.description}
                         </span>
                       </span>
