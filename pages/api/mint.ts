@@ -1,43 +1,58 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import formidable from "formidable-serverless";
 import { prisma } from "../../prisma/prisma";
+
+import { PINATA_JWT } from "../../util/constants";
+import { mintOnPinata } from "../../util/pinataUtils";
 
 const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(`/api/mint: incoming POST request`);
 
-  console.log(req.body);
+  const data = new formidable.IncomingForm();
+  data.keepExtensions = true;
+  await data.parse(req, async (err: any, fields: any, files: any) => {
+    const sessionKey = fields.session.replaceAll('"', "");
+    // Verify that this is the session of a current user
+    let user = await prisma.user.findFirst({
+      where: { session: { key: sessionKey } },
+      include: { nft: true },
+    });
 
-  const { session, name, image, description, wallet } = req.body;
+    if (!user) {
+      console.log("Invalid user session");
+      res.redirect("/");
+    } else if (user.nft) {
+      // Already minted an NFT
+      console.log("User has already minted an NFT");
+      res.redirect("/existingNFT");
+    } else {
+      console.log("Valid session + user!");
+      const address = fields.address.replaceAll('"', "");
+      // Signed in user w/ out NFT --> mint it
+      const hash = await mintOnPinata(files.file.path, fields.metadata);
 
-  // Look up session
-  try {
-    const sesh = await prisma.session.findUnique({ where: { key: session } });
+      // TODO: Call Dane's function
 
-    if (sesh) {
-      // TODO: Handle if NFT was already created
+      // Create NFT
+      const NftData = JSON.parse(fields.metadata);
+      NftData.image = hash;
+      NftData.address = address;
 
-      // TODO: Code to actually mint NFT
-      // TODO: Code to actually create image (if needed!)
+      // Update user object
       await prisma.user.update({
-        where: { id: sesh.userId },
+        where: { id: user.id },
         data: {
           nft: {
             create: {
-              name: name,
-              description: description,
-              image: image,
-              address: wallet,
+              ...NftData,
             },
           },
         },
       });
+
       res.status(201).end();
-    } else {
-      // Not a proper session - TODO on doing better job here
-      res.redirect("/"); // send back to home page.
     }
-  } catch (e) {
-    res.status(500).end();
-  }
+  });
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
@@ -46,6 +61,12 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     res.status(400).end();
   }
+};
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 };
 
 export default handler;

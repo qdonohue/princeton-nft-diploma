@@ -20,8 +20,6 @@ const NFTForm = ({
 }) => {
   const { register, handleSubmit } = useForm();
   const [imageData, setImageData] = useState<File | null>(null);
-  // const defaultImg = DEFAULT_NFT_IMAGE; // This is insane, but it doesn't work as default img otherwise...
-  // const [imgUrl, setImgUrl] = useState<string>(defaultImg);
   const [imgUrl, setImgUrl] = useState(DEFAULT_NFT_IMAGE);
 
   const onSubmit: any = (data: any) => {
@@ -58,14 +56,32 @@ const NFTForm = ({
                 className={inputStyling}
               />
             </div>
+            <div className={rowStyling}>
+              <Label title={"Year"} />
+              <input
+                type={"text"}
+                id="name"
+                {...register("year")}
+                className={inputStyling}
+              />
+            </div>
+            <div className={rowStyling}>
+              <Label title={"Major"} />
+              <input
+                type={"text"}
+                id="name"
+                {...register("major")}
+                className={inputStyling}
+              />
+            </div>
             <div className={rowStyling + " flex-col"}>
-              <Label title={"Description"} />
+              <Label title={"Message"} />
               <textarea
                 placeholder="A description for your NFT diploma"
                 rows={4}
                 cols={50}
                 id="name"
-                {...register("description")}
+                {...register("message")}
                 className={inputStyling + " p-2 mt-2 mr-2 text-sm ml-0"}
               />
             </div>

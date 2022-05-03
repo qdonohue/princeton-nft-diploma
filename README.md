@@ -32,16 +32,6 @@ The POST call on this endpoint is used for minting an NFT for a given user. The 
 
 If the user already has an NFT created, it will respond with a `400`. Upon succesful creation the user will be given a `201`.
 
-### TODO: `/api/image`
-
-The POST call on this endpoint is used for creating an IPFS image, and will return the string url for the image. It's expecting `multipart/form-data` (`FormData` in ts)
-
-```
-
-```
-
-Upon failure, it will respond with a `500` - or `201` + the url in JSON if succesful.
-
 ## Authentication
 
 ### `/api/auth/login`

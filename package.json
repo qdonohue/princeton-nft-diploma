@@ -6,15 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@prisma/client": "^3.13.0",
+    "@types/formidable": "^2.0.5",
     "@types/react-blockies": "^1.4.1",
+    "alch": "^0.0.2",
     "axios": "^0.27.2",
+    "form-data": "^4.0.0",
+    "formidable-serverless": "^1.1.1",
     "metamask-react": "^2.3.0",
     "next": "12.1.5",
+    "next-connect": "^0.12.2",
     "prisma": "^3.13.0",
     "react": "18.0.0",
     "react-blockies": "^1.4.1",
