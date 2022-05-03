@@ -32,6 +32,10 @@ const CreatePage = () => {
     setStep(SIGNUP_STEP.CONFIRM);
   };
 
+  const nftPreviewBack = () => {
+    setStep(SIGNUP_STEP.NFT);
+  };
+
   const mintNft = async () => {
     let data = new FormData();
     if (imgFile) {
@@ -66,6 +70,7 @@ const CreatePage = () => {
             userData={userData}
             imageUrl={imgUrl}
             mint={mintNft}
+            back={nftPreviewBack}
           />
         )}
       </div>

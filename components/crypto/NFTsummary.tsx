@@ -1,19 +1,34 @@
 import { NftType } from "../registration/types";
 
-const NFTsummary = ({
-  name,
-  message,
-  year,
-  img,
-}: { img: string } & NftType) => {
-  return (
-    <div className="w-fit max-h-screen flex flex-row border border-slate-500 rounded-lg p-2 shadow-lg">
-      <img src={img} className="w-48 h-48 shadow-sm" />
-      <div className="flex flex-col ml-2">
-        <div className="text-2xl font-bold text-center">{`${name} of the great class of ${year}`}</div>
-        <hr />
-        <p className="font-light">{message}</p>
+const lineContent = "col-span-2 font-light text-white";
+const messageContent =
+  "col-span-2 font-light whitespace-normal break-all text-white pr-24";
+
+const labelStyling = "font-bold text-left pl-2 col-span-1 text-white";
+
+const NftMetaData = ({ name, major, year, message }: NftType) => (
+  <div className="max-w-fit grid place-items-center">
+    <div className=" h-full grid grid-cols-3 place-content-start space-y-2">
+      <div className="col-span-3 pl-2 text-4xl text-center text-white pb-4">
+        NFT Data
       </div>
+      <div className={labelStyling}>{"Name:"}</div>
+      <div className={lineContent + ""}>{name}</div>
+      <div className={labelStyling}>{"Major:"}</div>
+      <div className={lineContent}>{major}</div>
+      <div className={labelStyling}>{"Year:"}</div>
+      <div className={lineContent}>{year}</div>
+      <div className={labelStyling}>{"Message:"}</div>
+      <div className={messageContent}>{message}</div>
+    </div>
+  </div>
+);
+
+const NFTsummary = ({ nft, img }: { img: string } & { nft: NftType }) => {
+  return (
+    <div className="w-full h-1/5 flex flex-row justify-center items-center space-x-4 mt-48">
+      <NftMetaData {...nft} />
+      <img src={img} className="w-96 aspect-w-1 rounded-lg" />
     </div>
   );
 };
