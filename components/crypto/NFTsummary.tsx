@@ -1,56 +1,34 @@
 import { NftType } from "../registration/types";
 
-const label = "";
-const lineContent = "col-span-2 font-light";
+const lineContent = "col-span-2 font-light text-white";
+const messageContent =
+  "col-span-2 font-light whitespace-normal break-all text-white pr-24";
 
-const RowEntry = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | null;
-}) => (
-  <div className="flex flex-row space-x-2">
-    <div className={"font-bold text-center"}>{label}</div>
-    <div className={lineContent}>{value}</div>
+const labelStyling = "font-bold text-left pl-2 col-span-1 text-white";
+
+const NftMetaData = ({ name, major, year, message }: NftType) => (
+  <div className="w-2/5 grid place-items-center">
+    <div className=" h-full grid grid-cols-3 place-content-start space-y-2">
+      <div className="col-span-3 pl-2 text-4xl text-center text-white pb-4">
+        NFT Data
+      </div>
+      <div className={labelStyling}>{"Name:"}</div>
+      <div className={lineContent + ""}>{name}</div>
+      <div className={labelStyling}>{"Major:"}</div>
+      <div className={lineContent}>{major}</div>
+      <div className={labelStyling}>{"Year:"}</div>
+      <div className={lineContent}>{year}</div>
+      <div className={labelStyling}>{"Message:"}</div>
+      <div className={messageContent}>{message}</div>
+    </div>
   </div>
 );
 
-// const RowEntry = ({
-//   label,
-//   value,
-// }: {
-//   label: string;
-//   value: string | null;
-// }) => (
-//   <div className="grid grid-cols-3 space-x-2">
-//     <div className={"font-bold text-center col-span-1"}>{label}</div>
-//     <div className={lineContent + ""}>{value}</div>
-//   </div>
-// );
-
-const processValue = (value: string | undefined) => {
-  return value ? value : " ";
-};
-
-const NFTsummary = ({
-  name,
-  major,
-  message,
-  year,
-  img,
-}: { img: string } & NftType) => {
+const NFTsummary = ({ nft, img }: { img: string } & { nft: NftType }) => {
   return (
-    <div className="w-full h-full flex flex-row justify-between items-center">
-      <div className="flex flex-col justify-start items-start space-y-2 border p-1 rounded-lg bg-linen w-2/5 h-full">
-        <RowEntry label="Name:" value={processValue(name)} />
-        <RowEntry label="Major:" value={processValue(major)} />
-        <RowEntry label="Year:" value={processValue(year)} />
-        <div className="flex flex-row space-x-2">
-          <div className="font-bold text-center">Message:</div>
-          <div className="font-light">{message}</div>
-        </div>
-      </div>
+    <div className="w-full h-1/4 mt-40 flex flex-row justify-center items-center space-x-4">
+      <NftMetaData {...nft} />
+      <img src={img} className="w-2/5 aspect-h-1 rounded-lg" />
     </div>
   );
 };

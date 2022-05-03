@@ -2,41 +2,52 @@ import Wallet from "../crypto/wallet";
 import { PulseLoader } from "react-spinners";
 import NFTsummary from "../crypto/NFTsummary";
 
-import { ChevronRightIcon } from "@heroicons/react/outline";
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/outline";
 import { NftType } from "./types";
 
 const AnimatedArrow = () => (
-  <div className="-m-4 flex flex-col justify-center items-center">
+  <div className="flex flex-col justify-center items-center">
     <div className="rotate-90 flex flex-row justify-center items-center">
-      <PulseLoader />
-      <ChevronRightIcon className="text-black w-24 h-24 -mx-4" />
+      <PulseLoader color={"#FFFFFF"} size={8} />
+      <ChevronRightIcon className="w-12 h-24 -mx-4 text-white" />
     </div>
   </div>
 );
+
+const buttonStyling =
+  "flex flex-row w-72 h-12 px-2 justify-between items-center text-white border border-slate-400 cursor-pointer text-center text-2xl rounded-lg font-light hover:shadow-lg bg-princeton";
 
 const NFTtransfer = ({
   wallet,
   userData,
   imageUrl,
   mint,
+  back,
 }: {
   wallet: string;
   userData: NftType;
   imageUrl: string;
   mint: () => void;
+  back: () => void;
 }) => {
   return (
-    <div className="flex flex-col justify-between items-center mt-5 space-y-8">
-      <NFTsummary {...userData} img={imageUrl} />
+    <div className="flex flex-col justify-between items-center mt-5">
+      <NFTsummary nft={userData} img={imageUrl} />
       <AnimatedArrow />
-      <div className="-mt-12">
+      <div className="flex flex-row text-center justify-center items-center -mt-28 space-x-8">
+        <div className={buttonStyling} onClick={back}>
+          <ChevronLeftIcon className="h-6 w-6" />
+          {"I want to change things"}
+        </div>
         <Wallet address={wallet} />
-      </div>
-      <div
-        className="border border-slate-400 cursor-pointer text-center text-2xl rounded-lg font-light hover:shadow-lg bg-princeton py-1 px-2"
-        onClick={mint}
-      >
-        {"Let's mint it!"}
+        <div className={buttonStyling} onClick={mint}>
+          {"Let's mint it!"}
+          <ChevronRightIcon className="h-6 w-6" />
+        </div>
       </div>
     </div>
   );
