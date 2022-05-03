@@ -74,7 +74,7 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
           <img src="/Metamask.png" className={imageStyling} />
         </div>
         <div className="font-light text-white text-center text-m mt-12">
-          We need your ethereum wallet's address to send your NFT!
+          {"We need your ethereum wallet's address to send your NFT!"}
         </div>
       </div>
     );

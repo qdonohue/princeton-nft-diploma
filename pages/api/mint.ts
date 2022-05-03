@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import formidable from "formidable-serverless";
 import { prisma } from "../../prisma/prisma";
+
+const formidable = require("formidable-serverless");
 
 import { mintOnPinata } from "../../util/pinataUtils";
 
@@ -35,9 +36,7 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const ipfsUrl = `ipfs.io/ipfs/${hash}`;
 
-      await mintNFT(address, hash);
-
-      console.log("made it past the function");
+      const txHash = await mintNFT(address, hash);
 
       // Create NFT
       const NftData = JSON.parse(fields.metadata);

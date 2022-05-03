@@ -11,7 +11,7 @@ const contract = require("../crypto/artifacts/contracts/nft-diploma.sol/NFTDiplo
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
 
 // mintNFT(recipient, "ipfs://QmZrJZMRPhaKa5MnioJKLYaDifVbYBrqxQDk8iMCUC6Pfd");
-export default async function mintNFT(recipient: any, tokenURI: string) {
+export default async function mintNFT(recipient, tokenURI) {
   const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
 
   //the transaction
@@ -26,11 +26,11 @@ export default async function mintNFT(recipient: any, tokenURI: string) {
   try {
     // sign the transaction
     const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
-    signPromise
-      .then((signedTx: { rawTransaction: any }) => {
+    const result = signPromise
+      .then((signedTx) => {
         web3.eth.sendSignedTransaction(
-          signedTx.rawTransaction!,
-          function (err: any, hash: any) {
+          signedTx.rawTransaction,
+          function (err, hash) {
             if (!err) {
               console.log(
                 "The hash of your transaction is: ",
@@ -46,9 +46,11 @@ export default async function mintNFT(recipient: any, tokenURI: string) {
           }
         );
       })
-      .catch((err: any) => {
+      .catch((err) => {
         console.log(" Promise failed:", err);
       });
+    console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
   }

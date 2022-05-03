@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Metamask from "../../components/crypto/Metamask";
 import FormManager from "../../components/registration/FormManager";
-import NFTForm from "../../components/registration/NFTForm";
 import NFTtransfer from "../../components/registration/NFTtransfer";
 import { ProgressBar } from "../../components/registration/ProgressBar";
 import { NftType } from "../../components/registration/types";
