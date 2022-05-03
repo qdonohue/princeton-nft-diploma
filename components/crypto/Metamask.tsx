@@ -6,11 +6,20 @@ import { GridLoader } from "react-spinners";
 
 import Image from "next/image";
 
+const imageStyling = "w-64 h-64";
+
 const containerStyling =
   "h-4/5 w-full mx-auto my-auto p-5 flex flex-col items-center";
 
 const StatusLabel = ({ text }: { text: string }) => (
-  <div className="font-light text-center text-2xl">{text}</div>
+  <div>
+    <div className="font-light text-white text-center text-5xl font-family: ui-sans-serif grid place-items-center mb-5">
+      {text}
+    </div>
+    <div className="text-white text-center text-lg font-family: ui-sans-serif mb-3">
+      Great job!
+    </div>
+  </div>
 );
 
 const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
@@ -54,7 +63,7 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
           }
           onClick={connect}
         >
-          <img src="/Metamask.png" className="h-64 w-64" />
+          <img src="/Metamask.png" className={imageStyling} />
         </div>
         <div className="font-light text-white text-center text-m mt-12">
           We need your ethereum wallet's address to send your NFT!
@@ -75,15 +84,15 @@ const Metamask = ({ advance }: { advance: (arg0: string) => void }) => {
   if (status === "connected" && account) {
     return (
       <div className={containerStyling + ""}>
-        <StatusLabel text={`Succesfully connected wallet!`} />
+        <StatusLabel text={`Your wallet is connected!`} />
         <div className="shadow-lg pt-2">
           {account && <Blockies seed={account} size={48} />}
         </div>
-        <div className="text-sm font-light">
+        <div className="text-white font-light text-sm font-family: ui-sans-serif mt-5">
           {account ? account?.substring(0, 14) + "..." : ""}
         </div>
         <div
-          className="border text-2xl rounded-lg px-4 py-2 mt-4 border-slate-200 hover:shadow-lg bg-princeton text-black font-light cursor-pointer"
+          className="text-black text-lg font-family: ui-sans-serif rounded-lg px-4 py-2 mt-4 hover:shadow-lg bg-princeton font-light cursor-pointer"
           onClick={() => advance(account)}
         >
           Continue

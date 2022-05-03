@@ -24,6 +24,9 @@ const ImageUpload = ({
 
   return (
     <div className="w-full flex flex-col">
+      <div className="text-white text-center text-3xl font-family: ui-sans-serif mb-10">
+        Drag in an image for your diploma (or use our default)
+      </div>
       <div {...getRootProps({ className: "w-full" })}>
         <input {...getInputProps()} />
         <div className="relative shadow-sm border border-slate-100 rounded max-w-fit max-h-fit overflow-hidden mx-auto">
@@ -53,9 +56,6 @@ const ImageUpload = ({
             </div>
           </div>
         </div>
-      </div>
-      <div className="font-light text-center pt-2">
-        Drag in an image for your diploma (or use our default)
       </div>
     </div>
   );

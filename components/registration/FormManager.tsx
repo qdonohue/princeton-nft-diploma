@@ -17,11 +17,13 @@ const Arrows = ({
   <div className="w-fill h-fill mt-4 flex justify-between items-center cursor-pointer space-x-5">
     <ArrowNarrowLeftIcon
       onClick={() => advance(false)}
-      className={"h-10 w-10 " + (stage ? " " : " hidden")}
+      className={"h-10 w-10 fill-white" + (stage ? " " : " hidden")}
     />
     <ArrowNarrowRightIcon
       onClick={() => advance(true)}
-      className={"h-10 w-10 " + (stage != FORM_STAGE.MESSAGE ? " " : " hidden")}
+      className={
+        "h-10 w-10 fill-white" + (stage != FORM_STAGE.MESSAGE ? " " : " hidden")
+      }
     />
   </div>
 );

@@ -47,7 +47,7 @@ const FormIterator = ({
             <input
               type={"text"}
               id="name"
-              placeholder="Preferred name?"
+              placeholder="Christopher L. Eisgruber"
               {...register("name")}
               className={inputStyling}
             />
@@ -58,7 +58,7 @@ const FormIterator = ({
             <input
               type={"text"}
               id="name"
-              placeholder="Class year?"
+              placeholder="2022"
               {...register("year")}
               className={inputStyling}
             />
@@ -69,7 +69,7 @@ const FormIterator = ({
             <input
               type={"text"}
               id="name"
-              placeholder="Major?"
+              placeholder="Major"
               {...register("major")}
               className={inputStyling}
             />
@@ -79,7 +79,7 @@ const FormIterator = ({
           <div className="flex flex-col justify-center items-center">
             <div className={rowStyling}>
               <textarea
-                placeholder="A description for your NFT diploma"
+                placeholder="A message for your NFT diploma. Please remember this is permanent."
                 rows={4}
                 cols={80}
                 id="name"
@@ -91,7 +91,7 @@ const FormIterator = ({
               <input
                 type="submit"
                 value="Let's mint!"
-                className="font-light border border-slate-400 mt-2 rounded-lg p-2 shadow-sm bg-slate-300 cursor-pointer"
+                className="h-16 w-32 font-light text-black text-lg mt-4 rounded-lg p-2 shadow-sm bg-princeton cursor-pointer"
               />
             </div>
           </div>
