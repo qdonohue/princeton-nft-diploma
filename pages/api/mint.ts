@@ -6,7 +6,7 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
   console.log(req.body);
 
-  const { session, name, image, description, wallet, file } = req.body;
+  const { session, name, image, description, wallet } = req.body;
 
   // Look up session
   try {

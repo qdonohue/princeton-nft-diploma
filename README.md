@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Endpoints
 
-## Getting Started
+## Frontend
 
-First, run the development server:
+### `/`
 
-```bash
-npm run dev
-# or
-yarn dev
+Home page with CAS login and FAQs
+
+### `/create/[session]`
+
+Page that handles the creation flow of an NFT. On this page, users will be prompted to connect a metamask wallet, customize their NFT, and then finally mint their NFT and send it to their wallet. The session key is a unique identifier used to track a user after they log in with CAS - it is invalidated and re-issued on each new session. (This is to prevent a user from posing as another if for example we used something like `/create/my_net_id` as the slug)
+
+### `/discover`
+
+Page that will display NFTs that have been minted. Users can view those that their friends have uploaded.
+
+## Backend
+
+### `/api/mint`
+
+The POST call on this endpoint is used for minting an NFT for a given user. The endpoint will validate that a user does not already have an NFT issued, and then will use the data from the body to create one. The expected data is of the form:
+
+```
+{
+    "session": Session slug (string)
+    "name": User name for Diploma (string)
+    "image": URL string for image (string - should be IPFS)
+    "description": Description text for Diploma (string)
+    "wallet": Wallet address for NFT to be transfered to (string)
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If the user already has an NFT created, it will respond with a `400`. Upon succesful creation the user will be given a `201`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### TODO: `/api/image`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The POST call on this endpoint is used for creating an IPFS image, and will return the string url for the image. It's expecting `multipart/form-data` (`FormData` in ts)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+Upon failure, it will respond with a `500` - or `201` + the url in JSON if succesful.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### `/api/auth/login`
 
-## Deploy on Vercel
+This endpoint will redirect the request to the CAS login, with our service callback URL appended (`/api/auth/callback`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### `/api/auth/callback`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This endpoint is hit by the user after a succesful CAS login. It will strip the CAS ticket from the query parameters (`ticket=...`) and then validate the ticket via the validation URL.
+
+Upon succesful validation, it will create the user object if one doesn't already exist, create or replace the existing user session, and then redirect the user to `/create/[session]` (if no NFT has been made yet - TODO: Handle NFT has been made case).
+
+# Getting Started:
+
+To run the codebase locally, you will need:
+An env file with:
+
+- DB access URL via `DB_URI` (make your own postgres or ask us)
+- `CAS_BASE_URL="https://fed.princeton.edu/cas/"`
+
+## Installation
+
+Install all packages with
+
+`yarn install`
+
+Then start the server with:
+
+`yarn dev`
+
+You can view the DB on localhost:5555 by running
+
+`yarn prisma studio`
