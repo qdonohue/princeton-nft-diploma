@@ -24,14 +24,14 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
     // Check if user already exists
     let user = await prisma.user.findUnique({
       where: { netId: userName },
-      include: { session: true },
+      include: { session: true, nft: true },
     });
 
     if (!user) {
       // If it doesn't exist create it.
       user = await prisma.user.create({
         data: { netId: userName },
-        include: { session: true },
+        include: { session: true, nft: true },
       });
     } else if (user.session) {
       // If it does exist, invalidate earlier session
@@ -45,6 +45,10 @@ const handleGetRequest = async (req: NextApiRequest, res: NextApiResponse) => {
       where: { id: user.id },
       data: { session: { create: { key: sessionKey } } },
     });
+
+    if (user?.nft) {
+      res.redirect(`/me/${sessionKey}`);
+    }
 
     res.redirect(`/create/${sessionKey}`);
   } else {

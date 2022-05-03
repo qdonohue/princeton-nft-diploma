@@ -34,7 +34,7 @@ const handlePostRequest = async (req: NextApiRequest, res: NextApiResponse) => {
       // Signed in user w/ out NFT --> mint it
       const hash = await mintOnPinata(files.file.path, fields.metadata);
 
-      const ipfsUrl = `ipfs.io/ipfs/${hash}`;
+      const ipfsUrl = `https://ipfs.io/ipfs/${hash}`;
 
       const txHash = await mintNFT(address, hash);
 
