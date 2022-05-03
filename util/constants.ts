@@ -6,6 +6,8 @@ export const SERVICE_CALLBACK_URL = process.env.SERVICE_CALLBACK_URL
   ? process.env.SERVICE_CALLBACK_URL
   : "http://localhost.princeton.edu:3000/api/auth/callback";
 
+export const PINATA_JWT = process.env.PINATA_JWT;
+
 export const SIGNUP_STEP = {
   METAMASK: 0,
   NFT: 1,

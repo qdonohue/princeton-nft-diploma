@@ -20,8 +20,6 @@ const NFTForm = ({
 }) => {
   const { register, handleSubmit } = useForm();
   const [imageData, setImageData] = useState<File | null>(null);
-  // const defaultImg = DEFAULT_NFT_IMAGE; // This is insane, but it doesn't work as default img otherwise...
-  // const [imgUrl, setImgUrl] = useState<string>(defaultImg);
   const [imgUrl, setImgUrl] = useState(DEFAULT_NFT_IMAGE);
 
   const onSubmit: any = (data: any) => {
